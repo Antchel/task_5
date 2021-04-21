@@ -136,16 +136,19 @@ def get_news():
                                                           page_size=10,
                                                           page=1)
                 print( f"News category is \"{cat}\"\n News keyword is \"{keyword}\"\n")
-
-                if top_headlines['totalResults']:
-                    if top_headlines['totalResults'] > 10:
+                articles = []
+                articles = top_headlines['articles']
+                if articles:
+                    if len(articles) > 10:
                         cnt = 10
                     else:
-                        cnt = top_headlines['totalResults']
+                        cnt = len(articles)
                     for i in range(cnt):
-                        print( f"====== {i + 1} Article =========\n")
-                        print( f" Title \n {top_headlines['articles'][i]['title']}\n"
-                              f" Link {top_headlines['articles'][i]['url']}\n")
+                        print( f"====== {i} Article =========\n")
+                        print("cnt = ", cnt)
+                        print(top_headlines)
+                        # print( f" Title \n {top_headlines['articles'][i]['title']}\n"
+                        #       f" Link {top_headlines['articles'][i]['url']}\n")
                         links.append(top_headlines['articles'][i]['url'])
                         titles.append(top_headlines['articles'][i]['title'])
                 else:
